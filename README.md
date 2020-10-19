@@ -23,7 +23,7 @@
 
 Have look at how useful can classbot be for your classroom workspace!!!
 
-[![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://youtu.be/CRSTGNChs1o)
+[![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://www.youtube.com/watch?v=NaiekJTGSXg)
 
 A lot of classrooms use slack as mode of communication. 
 
