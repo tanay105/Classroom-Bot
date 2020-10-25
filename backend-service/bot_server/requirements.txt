@@ -13,3 +13,5 @@ urllib3==1.25.10
 django-environ
 pylint
 django_mysql
+django-nose
+coverage
