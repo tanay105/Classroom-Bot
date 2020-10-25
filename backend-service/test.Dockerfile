@@ -1,7 +1,6 @@
 FROM python:3.7.9-stretch
 
 RUN mkdir /bot_server
-RUN 'export ci_env=`bash <(curl -s https://codecov.io/env)`'
 COPY bot_server/ bot_server/
 COPY execute.sh /bot_server/execute.sh
 WORKDIR /bot_server

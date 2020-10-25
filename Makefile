@@ -100,7 +100,8 @@ build-run-backend-test:
 	docker build -t backendtest -f backend-service/test.Dockerfile ./backend-service/
 	docker run --rm --name ${BACKEND-TEST-CONTAINER} --network ${TEST-NETWORK} \
 	 -p 8002:8002 --env-file backend-service/sample.env -e MYSQL_HOST=${MYSQL-CONTAINER} \
-	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
+	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 -e ci_env=`bash <(curl -s https://codecov.io/env)` \
+	 backendtest
 
 .PHONY : backend.test
 backend.test: create-network run-mysql build-run-backend-test
