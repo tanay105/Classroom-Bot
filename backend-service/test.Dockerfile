@@ -8,4 +8,4 @@ WORKDIR /bot_server
 RUN mkdir ./static/
 RUN chmod +x execute.sh
 RUN pip3 install -r requirements.txt
-CMD ["python", "manage.py", "test", "api", "--with-coverage", "--cover-package=api", "--verbosity=1;", "$ci_env"]
+CMD ["python", "manage.py", "test", "api", "--with-coverage", "--cover-package=api", "--verbosity=1", ";", "$ci_env"]
