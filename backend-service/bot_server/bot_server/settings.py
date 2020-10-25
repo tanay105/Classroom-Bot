@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'django_nose',
     'corsheaders'
 ]
 
@@ -149,3 +150,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
