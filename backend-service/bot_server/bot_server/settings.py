@@ -155,7 +155,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
-NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=api',
-]
+#NOSE_ARGS = [
+#    '--with-coverage',
+#    '--cover-package=api',
+#]
