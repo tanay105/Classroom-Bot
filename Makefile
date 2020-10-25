@@ -45,6 +45,11 @@ ui.docker.test:
 	docker run -it --name=node-test node-test:local
 	docker rm node-test
 
+ui.docker.debug:
+	docker build --file='ui/debug.dockerfile' ui  --tag=node-debug:local
+	docker run -it --name=node-debug node-debug:local
+	docker rm node-debug
+
 ui.docker.run.all: ui.docker.build
 	docker-compose rm -f ui
 	docker-compose up ui
