@@ -12,8 +12,10 @@ help :
 	@echo "backend.test			: Build and Run the tests for backend service"
 	@echo "clean				: Remove docker containers."
 
-start.all:
-	docker-compose build
+build.images:
+	docker-compose build --parallel
+
+start.all: build.images
 	docker-compose up -d
 
 ui.install:
@@ -73,8 +75,7 @@ backend-proxy.lint:
 	docker run --rm backendproxylinter
 
 .PHONY : backend.app
-backend.app:
-	docker-compose build
+backend.app: build.images
 	docker-compose up -d ${MYSQL-CONTAINER}
 	docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
