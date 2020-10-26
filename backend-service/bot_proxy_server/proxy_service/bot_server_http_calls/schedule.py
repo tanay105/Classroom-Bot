@@ -10,9 +10,9 @@ def save_tutor_link_user_email_id(team_id, tutor_link, slack_user_id):
         print("Sending")
         print(schedule_url, tutor_link, slack_user_id, team_id)
         req = requests.post(schedule_url,
-                             data={'tutor_link': tutor_link,
-                                   'workspace_id': team_id,
-                                   'slack_user_id': slack_user_id})
+                            data={'tutor_link': tutor_link,
+                                  'workspace_id': team_id,
+                                  'slack_user_id': slack_user_id})
 
         res = req.text
         if res == 'true':
@@ -32,9 +32,9 @@ def save_lecture_link_user_email_id(team_id, lecture_link, slack_user_id):
         print("Sending")
         print(schedule_url, lecture_link, slack_user_id, team_id)
         req = requests.post(schedule_url,
-                             data={'lecture_link': lecture_link,
-                                   'workspace_id': team_id,
-                                   'slack_user_id': slack_user_id})
+                            data={'lecture_link': lecture_link,
+                                  'workspace_id': team_id,
+                                  'slack_user_id': slack_user_id})
 
         res = req.text
         if res == 'true':

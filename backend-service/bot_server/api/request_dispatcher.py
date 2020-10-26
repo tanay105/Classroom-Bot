@@ -206,17 +206,17 @@ def dispatch_schedule_get_request(request):
     :return:
     """
 
-    #lecture_link = request.query_params.get("lecture_link", None)
-    #tutor_link = request.query_params.get("tutor_link", None)
-    #workspace_id = request.query_params.get("workspace_id", None)
-    #course_id = request.query_params.get("course_id", None)
+    # lecture_link = request.query_params.get("lecture_link", None)
+    # tutor_link = request.query_params.get("tutor_link", None)
+    # workspace_id = request.query_params.get("workspace_id", None)
+    # course_id = request.query_params.get("course_id", None)
     student_id = request.query_params.get("slack_user_id", None)
     schedule_type = request.query_params.get("type", None)
     print(student_id, schedule_type)
 
-    #if (lecture_link) and (workspace_id or course_id):
+    # if (lecture_link) and (workspace_id or course_id):
     #    return get_schedule_lecture_details(lecture_link, workspace_id, course_id)
-    #elif (tutor_link) and (workspace_id or course_id):
+    # elif (tutor_link) and (workspace_id or course_id):
     #    return get_schedule_tutor_details(tutor_link, workspace_id, course_id)
     if not schedule_type:
         return False
@@ -227,7 +227,7 @@ def dispatch_schedule_get_request(request):
 
 
 def dispatch_update_schedule_details(request):
-    """REST Request dispatcher- Update schedule 
+    """REST Request dispatcher- Update schedule
 
     :param request:
     :return:
@@ -242,5 +242,3 @@ def dispatch_schedule_delete_request(request):
     :return:
     """
     return delete_schedule(request.data)
-
-

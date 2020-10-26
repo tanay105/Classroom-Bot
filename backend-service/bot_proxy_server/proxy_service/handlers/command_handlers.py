@@ -13,9 +13,9 @@ from proxy_service.bot_server_http_calls.assignment import (get_all_assignments_
                                                             create_new_assignment)
 from proxy_service.bot_server_http_calls.student import (register_user_email_id, get_groups_for_user)
 from proxy_service.bot_server_http_calls.schedule import (save_lecture_link_user_email_id,
-                                                         save_tutor_link_user_email_id,
-                                                         get_lecture_link_for_user,
-                                                         get_tutor_link_for_user)
+                                                          save_tutor_link_user_email_id,
+                                                          get_lecture_link_for_user,
+                                                          get_tutor_link_for_user)
 
 
 supported_group_command_parameters = ('help', 'list')

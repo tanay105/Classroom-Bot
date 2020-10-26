@@ -569,8 +569,8 @@ class ScheduleManager(models.Manager):
             lecture_schedule = self.get(lecture_link=lecture_link, workspace_id=workspace_id)
             print(lecture_schedule)
             return []
-            #return json.loads(serializers.serialize('json',
-            #                                        [student]))
+            # return json.loads(serializers.serialize('json',
+            #                                         [student]))
         except Exception as e:
             print("Error in getting schedule details %s", e, flush=True)
             return []
@@ -586,12 +586,11 @@ class ScheduleManager(models.Manager):
             tutor_schedule = self.get(tutor_link=tutor_link, workspace_id=workspace_id)
             print(tutor_schedule)
             return []
-            #return json.loads(serializers.serialize('json',
+            # return json.loads(serializers.serialize('json',
             #                                        [student]))
         except Exception as e:
             print("Error in getting schedule details %s", e, flush=True)
             return []
-
 
     def get_all_schedules(self):
         """Get all student details
@@ -599,9 +598,9 @@ class ScheduleManager(models.Manager):
         :return:
         """
         try:
-            #students = self.filter().all()
+            # students = self.filter().all()
             return ""
-            #return json.loads(serializers.serialize('json',
+            # return json.loads(serializers.serialize('json',
             #                                        [student for student in students]))
         except Exception as e:
             print("error in getting studnet details ", e)
@@ -615,7 +614,7 @@ class ScheduleManager(models.Manager):
         :return:
         """
         try:
-            #self.filter(email_id=email_id, registered_course=course).delete()
+            # self.filter(email_id=email_id, registered_course=course).delete()
             return True
         except Exception as e:
             print("error in deleting schedule ", e)
@@ -641,10 +640,8 @@ class Schedule(models.Model):
         unique_together = (('slack_user_id', 'log_schedule_id'),)
 
     log_schedule_id = models.AutoField(primary_key=True)
-    #student_unity_id = models.CharField(max_length=10, unique=True)
+    # student_unity_id = models.CharField(max_length=10, unique=True)
     lecture_link = models.CharField(max_length=100, default=None)
     tutor_link = models.CharField(max_length=100, default=None)
     slack_user_id = models.CharField(max_length=100, null=True)
     objects = ScheduleManager()
-
-

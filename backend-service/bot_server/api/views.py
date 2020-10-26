@@ -11,7 +11,7 @@ from .request_dispatcher import (dispatch_course_delete_request, dispatch_group_
 from .request_dispatcher import (dispatch_schedule_delete_request, dispatch_update_schedule_details,
                                  dispatch_schedule_get_request, dispatch_schedule_create_request)
 from .serializer import (CourseSerializer, GroupSerializer, StudentSerializer, AssignmentSerializer,
-                        ScheduleSerializer)
+                         ScheduleSerializer)
 
 error_response = {
     "data": [],

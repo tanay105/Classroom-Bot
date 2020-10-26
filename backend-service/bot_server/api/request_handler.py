@@ -230,25 +230,25 @@ def update_schedule_details(data):
     """
     # TODO: Add functionality if needed later
     response = None
-    #if 'email_id' not in data:
-    #    return missing_field_error('email_id')
+    # if 'email_id' not in data:
+    #     return missing_field_error('email_id')
 
-    #if 'workspace_id' in data:
-    #    course = Course.objects.get(workspace_id=data['workspace_id'])
-    #elif 'course_id' in data:
-    #    course = Course.objects.get(log_course_id=data['course_id'])
-    #else:
-    #    return missing_field_error("Course Identifier")
+    # if 'workspace_id' in data:
+    #     course = Course.objects.get(workspace_id=data['workspace_id'])
+    # elif 'course_id' in data:
+    #     course = Course.objects.get(log_course_id=data['course_id'])
+    # else:
+    #     return missing_field_error("Course Identifier")
 
-    # TODO: Add bot token to response whenever 'workspace_id' in data else remove it
+    #  TODO: Add bot token to response whenever 'workspace_id' in data else remove it
 
-    #if 'group_num' in data:
-    #    response = Student.objects.assign_group(email_id=data['participant'], course=data['course_id'],
-    #                                            group_number=data['group_num'])
-    #elif 'slack_user_id' in data:
-    #    response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
-    #else:
-    #    response = missing_field_error('No field to update')
+    # if 'group_num' in data:
+    #     response = Student.objects.assign_group(email_id=data['participant'], course=data['course_id'],
+    #                                             group_number=data['group_num'])
+    # elif 'slack_user_id' in data:
+    #     response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
+    # else:
+    #     response = missing_field_error('No field to update')
     return response
 
 
@@ -324,17 +324,17 @@ def delete_schedule(data):
     :return:
     """
     response = None
-    #if 'email_id' not in data:
-    #    return missing_field_error('email_id')
+    # if 'email_id' not in data:
+    #     return missing_field_error('email_id')
 
-    #if 'workspace_id' in data:
-    #    course = Course.objects.get(workspace_id=data['workspace_id'])
-    #elif 'course_id' in data:
-    #    course = Course.objects.get(log_course_id=data['course_id'])
-    #else:
-    #    return missing_field_error("Course Identifier")
+    # if 'workspace_id' in data:
+    #     course = Course.objects.get(workspace_id=data['workspace_id'])
+    # elif 'course_id' in data:
+    #     course = Course.objects.get(log_course_id=data['course_id'])
+    # else:
+    #     return missing_field_error("Course Identifier")
 
-    #response = Student.objects.delete_student(email_id=data['email_id'], course=course)
+    # response = Student.objects.delete_student(email_id=data['email_id'], course=course)
     return response
 
 
