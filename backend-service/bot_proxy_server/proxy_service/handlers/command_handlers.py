@@ -256,6 +256,28 @@ def is_valid_schedule_command_request(parameters):
         return False
 
 
+supported_deadline_command_operations = ('add', 'show')
+
+def is_valid_deadline_command_request(parameters):
+
+    if parameters[0] in supported_deadline_command_operations:
+
+        if parameters[0] == "add":
+            if len(parameters) == 2:
+                return True
+            else:
+                return False
+        if parameters[0] == "show":
+            if len(parameters) == 1:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
 def parse_schedule_command_parameters_and_respond(request, parameters):
 
     response = ""
@@ -294,4 +316,38 @@ def schedule_handler(request: dict) -> None:
 
     request_parameters = request["text"].replace("\xa0", " ")
     response_text = parse_schedule_command_parameters_and_respond(request, request_parameters)
+    send_command_response(request, response_text)
+
+def parse_daedline_parameters_and_respond(request, request_parameters):
+    response = ""
+
+    if is_valid_deadline_command_request(parameters):
+
+        parameters = parameters.split("")
+
+        if parameters[0] == "add":
+            name = parameters["name"]
+            date = parameters["date"]
+
+            response = add_deadline_user_email_id(name= name, date= date, slack_user_id= request["user_id"]
+
+        elif parameters[0] == "show":
+            response = show_deadlines_for_user(request["user_id"])
+
+    else:
+
+    response = "Invalid request format or structure"
+
+    return response
+def deadline_handler(request: dict) -> None:
+
+    """
+    This function handles a request from the slack for adding new deadlines 
+    and showing the most upcoming deadlines.
+    :param request: slack request
+    :return: None
+    """
+
+    request_parameters = request["text"].replace("\xa0", " ")
+    response_text = parse_daedline_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
