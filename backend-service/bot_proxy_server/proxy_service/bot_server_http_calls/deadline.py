@@ -3,14 +3,13 @@ import os
 
 
 def add_deadline_user_email_id(name, date, team_id, slack_user_id):
-    
     deadline_url = os.getenv("BOT_SERVER_DEADLINE_URL", None)
 
     if deadline_url:
-        req = requests.patch(deadline_url, data=('name': name,
-                                                'date': date,
-                                                'workspace_id': team_id,
-                                                'slack_user_id': slack_user_id))
+        req = requests.patch(deadline_url, data={'name': name,
+                                                 'date': date,
+                                                 'workspace_id': team_id,
+                                                 'slack_user_id': slack_user_id})
 
         res = req.text
 
@@ -23,12 +22,12 @@ def add_deadline_user_email_id(name, date, team_id, slack_user_id):
 
 
 def show_deadlines_for_user(slack_id):
-
     deadline_url = os.getenv("BOT_SERVER_SCHEDULE_URL", None)
 
     if deadline_url:
         req = requests.get(deadline_url, params={
             "student_id": slack_id
-                                                                                                                                                                                                     43,0-1        Top
+        })
 
-
+        res = req.json()
+        return res["data"]
