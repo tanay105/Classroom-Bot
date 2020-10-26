@@ -27,7 +27,7 @@ def save_lecture_link_user_email_id(team_id, lecture_link, slack_user_id):
     schedule_url = os.getenv("BOT_SERVER_SCHEDULE_URL", None)
 
     if schedule_url:
-        req = requests.patch(schedule_url,,
+        req = requests.patch(schedule_url,
                              data={'lecture_link': lecture_link,
                                    'workspace_id': team_id,
                                    'slack_user_id': slack_user_id})
