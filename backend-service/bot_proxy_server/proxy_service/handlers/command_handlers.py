@@ -239,6 +239,17 @@ def is_valid_schedule_command_request(parameters):
                 return True
             else:
                 return False
+        if parameters[0] == "get_lecture_link":
+            if len(parameters) == 1:
+                return True
+            else:
+                return False
+        if parameters[0] == "get_tutor_link":
+            if len(parameters) == 1:
+                return True
+            else:
+                return False
+
         else:
             return False
     else:
@@ -254,12 +265,19 @@ def parse_schedule_command_parameters_and_respond(request, parameters):
         parameters = parameters.split(" ")
 
         if parameters[0] == "tutor":
-            email = parameters[1]
+            link = parameters[1]
             team_id = request["team_id"]
 
-            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+            response = save_tutor_link_user_email_id(tutor_link=link, team_id=team_id, slack_user_id=request["user_id"])
         elif parameters[0] == "lecture":
-            response = get_groups_for_user(request['user_id'])
+            link = parameters[1]
+            team_id = request["team_id"]
+
+            response = save_lecture_link_user_email_id(lecture_link=link, team_id=team_id, slack_user_id=request["user_id"])
+        elif parameters[0] == "get_tutor_link":
+            response = get_tutor_link_for_user(request['user_id'])
+        elif parameters[0] == "get_lecture_link":
+            response = get_lecture_link_for_user(request['user_id'])
 
     else:
         response = "Invalid request format/structure."
