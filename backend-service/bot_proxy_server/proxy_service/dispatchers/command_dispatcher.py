@@ -49,3 +49,6 @@ def assign_command_handler(command):
 
     elif command == "/schedule":
         return schedule_handler
+
+    elif command == "/grade":
+        return grade_handler
