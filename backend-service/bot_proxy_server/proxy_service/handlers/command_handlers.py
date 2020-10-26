@@ -217,8 +217,8 @@ def my_handler(request: dict) -> None:
     send_command_response(request, response_text)
 
 
-
 # code for handling schedule command from slack to class room environment
+
 
 supported_schedule_command_operations = ('tutor', 'lecture')
 
