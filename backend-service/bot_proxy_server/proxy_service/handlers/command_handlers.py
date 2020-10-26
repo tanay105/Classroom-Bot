@@ -297,16 +297,16 @@ def schedule_handler(request: dict) -> None:
     response_text = parse_schedule_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
 
+
 def is_valid_grade_command_request(parameters):
 
     parameters = parameters.split(" ")
 
     if parameters[0] in supported_grade_command_operations:
-
         if len(parameters) == 1 and parameters[0] == 'get':
             return True
         elif parameters[0] == 'create':
-            # create params 
+            # create params
             return True
     else:
         return False
@@ -330,14 +330,11 @@ def parse_grade_command_parameters_and_respond(request, parameters):
 
     if is_valid_grade_command_request(parameters):
         parameters = parameters.split(" ")
-
         if parameters[0] == "get":
             response = get_all_grades_for_student(student_id=request["student_id"])
             response = format_grade_get_response(response)
         elif parameters[0] == "create":
             pass
-
-
     else:
         response = "Invalid command parameters."
 
@@ -354,4 +351,3 @@ def grade_handler(request: dict) -> None:
     request_parameters = request["text"].replace("\xa0", " ")
     response_text = parse_grade_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
-
