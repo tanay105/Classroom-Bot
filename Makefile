@@ -98,7 +98,7 @@ create-network:
 .PHONY : build-run-backend-test
 build-run-backend-test:
 	docker build -t backendtest -f backend-service/test.Dockerfile ./backend-service/
-	docker run --rm --name ${BACKEND-TEST-CONTAINER} --network ${TEST-NETWORK} \
+	docker run -v $HOME/shared:/shared --rm --name ${BACKEND-TEST-CONTAINER} --network ${TEST-NETWORK} \
 	 -p 8002:8002 --env-file backend-service/sample.env -e MYSQL_HOST=${MYSQL-CONTAINER} \
 	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
 
