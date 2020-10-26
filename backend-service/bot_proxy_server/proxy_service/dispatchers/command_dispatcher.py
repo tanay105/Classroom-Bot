@@ -49,6 +49,3 @@ def assign_command_handler(command):
 
     elif command == "/schedule":
         return schedule_handler
-    
-    elif command == "/deadline":
-        return deadline_handler
