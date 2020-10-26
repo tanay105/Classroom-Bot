@@ -1,14 +1,13 @@
 from slack.errors import SlackApiError
 from slack import WebClient
 import traceback
-from proxy_service.bot_server_http_calls.course import get_bot_token_from_team_id
-
+from proxy_service.bot_server_http_calls.course \
+    import get_bot_token_from_team_id
 
 __all__ = ('send_message', 'get_or_create_slack_web_client')
 
 
 def get_or_create_slack_web_client(token):
-
     client = None
 
     try:
@@ -21,29 +20,30 @@ def get_or_create_slack_web_client(token):
 
 
 def send_message(team_id, channel, message, user_id):
-
     retry_count = 1
 
     bot_token = get_bot_token_from_team_id(team_id=team_id)
 
-    slack_client = SlackWebClientCacheSingletonManager.get_cache().\
+    slack_client = SlackWebClientCacheSingletonManager.get_cache(). \
         get_or_add_missing_team_client(team_id=team_id, team_token=bot_token)
 
     if slack_client:
         while retry_count <= 5:
 
             try:
-                slack_client.chat_postEphemeral(channel=channel, text=message, user=user_id)
+                slack_client.chat_postEphemeral(
+                    channel=channel, text=message, user=user_id)
                 break
             except SlackApiError as e:
                 traceback.print_exc()
-                slack_client = \
-                    SlackWebClientCacheSingletonManager.get_cache().get_or_add_missing_team_client(
-                        team_id=team_id,
-                        team_token=bot_token)
+                slack_client = SlackWebClientCacheSingletonManager \
+                    .get_cache() \
+                    .get_or_add_missing_team_client(team_id=team_id,
+                                                    team_token=bot_token)
                 retry_count += 1
     else:
-        print("Most probably slack app not configured on system or error creating client.")
+        print("Most probably slack app not "
+              "configured on system or error creating client.")
 
 
 class SlackWebClientCache(object):
