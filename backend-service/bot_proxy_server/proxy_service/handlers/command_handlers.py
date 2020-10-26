@@ -263,7 +263,7 @@ def is_valid_deadline_command_request(parameters):
     if parameters[0] in supported_deadline_command_operations:
 
         if parameters[0] == "add":
-            if len(parameters) == 3:
+            if len(parameters) == 2:
                 return True
             else:
                 return False
@@ -326,11 +326,10 @@ def parse_daedline_parameters_and_respond(request, request_parameters):
         parameters = parameters.split("")
 
         if parameters[0] == "add":
-            name = parameters[1]
-            date = parameters[2]
-            team_id = parameters["team_id"]
+            name = parameters["name"]
+            date = parameters["date"]
 
-            response = add_deadline_user_email_id(name= name, date= date, team_id, slack_user_id= request["user_id"]
+            response = add_deadline_user_email_id(name= name, date= date, slack_user_id= request["user_id"]
 
         elif parameters[0] == "show":
             response = show_deadlines_for_user(request["user_id"])
@@ -340,7 +339,6 @@ def parse_daedline_parameters_and_respond(request, request_parameters):
     response = "Invalid request format or structure"
 
     return response
-
 def deadline_handler(request: dict) -> None:
 
     """
