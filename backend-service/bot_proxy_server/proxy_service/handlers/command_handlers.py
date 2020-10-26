@@ -331,7 +331,7 @@ def parse_daedline_parameters_and_respond(request, request_parameters):
 
 def deadline_handler(request: dict) -> None:
     """
-    This function handles a request from the slack for adding new deadlines 
+    This function handles a request from the slack for adding new deadlines
     and showing the most upcoming deadlines.
     :param request: slack request
     :return: None
