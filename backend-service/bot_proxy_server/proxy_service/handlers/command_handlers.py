@@ -215,3 +215,65 @@ def my_handler(request: dict) -> None:
     request_parameters = request["text"].replace("\xa0", " ")
     response_text = parse_my_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
+
+
+# code for handling schedule command from slack to class room environment
+
+
+supported_schedule_command_operations = ('tutor', 'lecture')
+
+
+def is_valid_schedule_command_request(parameters):
+
+    parameters = parameters.split(" ")
+
+    if parameters[0] in supported_schedule_command_operations:
+
+        if parameters[0] == "tutor":
+            if len(parameters) == 2:
+                return True
+            else:
+                return False
+        if parameters[0] == "lecture":
+            if len(parameters) == 1:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
+def parse_schedule_command_parameters_and_respond(request, parameters):
+
+    response = ""
+
+    if is_valid_schedule_command_request(parameters):
+
+        parameters = parameters.split(" ")
+
+        if parameters[0] == "tutor":
+            email = parameters[1]
+            team_id = request["team_id"]
+
+            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+        elif parameters[0] == "lecture":
+            response = get_groups_for_user(request['user_id'])
+
+    else:
+        response = "Invalid request format/structure."
+    return response
+
+
+def schedule_handler(request: dict) -> None:
+
+    """
+    This function handles a request from the slack for registering a new schedule using it's link.
+    :param request: slack request
+    :return: None
+    """
+
+    request_parameters = request["text"].replace("\xa0", " ")
+    response_text = parse_schedule_command_parameters_and_respond(request, request_parameters)
+    send_command_response(request, response_text)
