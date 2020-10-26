@@ -6,7 +6,7 @@ classroom api's.
 Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
-from .models import Course, Group, Student, Assignment
+from .models import Course, Group, Student, Assignment, Schedule
 import traceback
 from rest_framework import exceptions
 
@@ -197,6 +197,156 @@ def delete_student(data):
         return missing_field_error("Course Identifier")
 
     return Student.objects.delete_student(email_id=data['email_id'], course=course)
+
+
+# Scheudle APIs
+
+
+def create_schedule(data):
+    """REST Request handler- Create schedule
+
+    :param data:
+    :return:
+    """
+    try:
+        data_keys = data.keys()
+        if "lecture_link" in data_keys:
+            response = Schedule.objects.create_schedule(slack_user_id=data['slack_user_id'],
+                                                        lecture_link=data['lecture_link'])
+        elif "tutor_link" in data_keys:
+            response = Schedule.objects.create_schedule(slack_user_id=data['slack_user_id'],
+                                                        tutor_link=data['tutor_link'])
+        return {'data': response}
+    except Exception as e:
+        traceback.print_exc()
+        return {'data': f'Could not create the student: {e}', 'status_code': 400}
+
+
+def update_schedule_details(data):
+    """REST Request handler- update schedule details
+
+    :param data:
+    :return:
+    """
+    # TODO: Add functionality if needed later
+    response = None
+    #if 'email_id' not in data:
+    #    return missing_field_error('email_id')
+
+    #if 'workspace_id' in data:
+    #    course = Course.objects.get(workspace_id=data['workspace_id'])
+    #elif 'course_id' in data:
+    #    course = Course.objects.get(log_course_id=data['course_id'])
+    #else:
+    #    return missing_field_error("Course Identifier")
+
+    # TODO: Add bot token to response whenever 'workspace_id' in data else remove it
+
+    #if 'group_num' in data:
+    #    response = Student.objects.assign_group(email_id=data['participant'], course=data['course_id'],
+    #                                            group_number=data['group_num'])
+    #elif 'slack_user_id' in data:
+    #    response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
+    #else:
+    #    response = missing_field_error('No field to update')
+    return response
+
+
+def get_schedule_lecture_details(lecture_link, workspace_id=None, course_id=None):
+    """REST Request habdler- get schedule lecture details
+
+    :param lecture_link:
+    :param workspace_id:
+    :param course_id:
+    :return:
+    """
+    if workspace_id is not None:
+        course = Course.objects.get(workspace_id=workspace_id)
+    elif course_id is not None:
+        course = Course.objects.get(log_course_id=course_id)
+    else:
+        return missing_field_error("Course Identifier")
+
+    response = Schedule.objects.get_schedule_lecture_details(lecture_link=lecture_link, course=course)
+
+    # TODO: Add bot token whenever 'workspace_id' in data else remove it
+
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
+def get_schedule_tutor_details(tutor_link, workspace_id=None, course_id=None):
+    """REST Request habdler- get schedule tutor details
+
+    :param tutor_link:
+    :param workspace_id:
+    :param course_id:
+    :return:
+    """
+    if workspace_id is not None:
+        course = Course.objects.get(workspace_id=workspace_id)
+    elif course_id is not None:
+        course = Course.objects.get(log_course_id=course_id)
+    else:
+        return missing_field_error("Course Identifier")
+
+    response = Schedule.objects.get_tutor_lecture_details(tutor_link=tutor_link, course=course)
+
+    # TODO: Add bot token whenever 'workspace_id' in data else remove it
+
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
+def get_all_schedules():
+    """REST Request handler- get all schedule details
+
+    :return:
+    """
+    response = Schedule.objects.get_all_schedule()
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
+def delete_schedule(data):
+    """REST Request handler- Delete schedule
+
+    :param data:
+    :return:
+    """
+    response = None
+    #if 'email_id' not in data:
+    #    return missing_field_error('email_id')
+
+    #if 'workspace_id' in data:
+    #    course = Course.objects.get(workspace_id=data['workspace_id'])
+    #elif 'course_id' in data:
+    #    course = Course.objects.get(log_course_id=data['course_id'])
+    #else:
+    #    return missing_field_error("Course Identifier")
+
+    #response = Student.objects.delete_student(email_id=data['email_id'], course=course)
+    return response
+
+
+def get_links_for_a_slack_user(student_id, schedule_type):
+    response = Schedule.objects.get_links_for_a_slack_user(student_id=student_id,
+                                                           schedule_type=schedule_type)
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
 
 # Group APIs
 

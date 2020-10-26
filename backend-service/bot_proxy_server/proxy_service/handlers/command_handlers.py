@@ -12,6 +12,10 @@ from proxy_service.models import CommandRequest
 from proxy_service.bot_server_http_calls.assignment import (get_all_assignments_for_team,
                                                             create_new_assignment)
 from proxy_service.bot_server_http_calls.student import (register_user_email_id, get_groups_for_user)
+from proxy_service.bot_server_http_calls.schedule import (save_lecture_link_user_email_id,
+                                                         save_tutor_link_user_email_id,
+                                                         get_lecture_link_for_user,
+                                                         get_tutor_link_for_user)
 
 
 supported_group_command_parameters = ('help', 'list')
@@ -220,7 +224,7 @@ def my_handler(request: dict) -> None:
 # code for handling schedule command from slack to class room environment
 
 
-supported_schedule_command_operations = ('tutor', 'lecture')
+supported_schedule_command_operations = ('tutor', 'lecture', 'get_lecture_link', 'get_tutor_link')
 
 
 def is_valid_schedule_command_request(parameters):
@@ -235,7 +239,7 @@ def is_valid_schedule_command_request(parameters):
             else:
                 return False
         if parameters[0] == "lecture":
-            if len(parameters) == 1:
+            if len(parameters) == 2:
                 return True
             else:
                 return False
@@ -263,6 +267,8 @@ def parse_schedule_command_parameters_and_respond(request, parameters):
     if is_valid_schedule_command_request(parameters):
 
         parameters = parameters.split(" ")
+        print("printing parameters")
+        print(parameters)
 
         if parameters[0] == "tutor":
             link = parameters[1]

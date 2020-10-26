@@ -515,3 +515,136 @@ class Assignment(models.Model):
     homework_url = models.URLField(blank=True, null=True)
     created_by = models.CharField(blank=False, null=False, max_length=100)
     objects = AssignmentManager()
+
+
+# Schedule APIs Model
+
+
+class ScheduleManager(models.Manager):
+    """
+    API's to perform CRUD operations on manager tables.
+    """
+
+    def get_links_for_a_slack_user(self, student_id, schedule_type):
+        print("from model")
+        print(student_id)
+        response_text = None
+        if student_id:
+            response_text = self.filter(slack_user_id=student_id).all()
+            response_text = json.loads(serializers.serialize('json', [response for response in response_text]))
+            data = response_text[0]['fields']
+            if schedule_type == "lecture":
+                return data['lecture_link']
+            elif schedule_type == "tutor":
+                return data['tutor_link']
+
+        else:
+            return "Schedule not created for this user_id"
+
+    def create_schedule(self, slack_user_id, lecture_link=None, tutor_link=None):
+        """Create student entry
+
+        :param student_unity_id:
+        :param course:
+        :param name:
+        :param email_id:
+        :param slack_user_id:
+        :return:
+        """
+
+        if lecture_link:
+            self.create(slack_user_id=slack_user_id, lecture_link=lecture_link, tutor_link="")
+        elif tutor_link:
+            self.create(slack_user_id=slack_user_id, tutor_link=tutor_link, lecture_link="")
+        return "Create Schedule Successfully."
+
+    def get_schedule_lecture_details(self, lecture_link, workspace_d, course):
+        """Get schedule lecture details
+
+        :param email_id:
+        :param course:
+        :return:
+        """
+        try:
+            lecture_schedule = self.get(lecture_link=lecture_link, workspace_id=workspace_id)
+            print(lecture_schedule)
+            return []
+            #return json.loads(serializers.serialize('json',
+            #                                        [student]))
+        except Exception as e:
+            print("Error in getting schedule details %s", e, flush=True)
+            return []
+
+    def get_schedule_tutor_details(self, tutor_link, workspace_d, course):
+        """Get schedule tutor details
+
+        :param email_id:
+        :param course:
+        :return:
+        """
+        try:
+            tutor_schedule = self.get(tutor_link=tutor_link, workspace_id=workspace_id)
+            print(tutor_schedule)
+            return []
+            #return json.loads(serializers.serialize('json',
+            #                                        [student]))
+        except Exception as e:
+            print("Error in getting schedule details %s", e, flush=True)
+            return []
+
+
+    def get_all_schedules(self):
+        """Get all student details
+
+        :return:
+        """
+        try:
+            #students = self.filter().all()
+            return ""
+            #return json.loads(serializers.serialize('json',
+            #                                        [student for student in students]))
+        except Exception as e:
+            print("error in getting studnet details ", e)
+            return ""
+
+    def delete_schedule(self, email_id, course):
+        """ Delete student
+
+        :param email_id:
+        :param course:
+        :return:
+        """
+        try:
+            #self.filter(email_id=email_id, registered_course=course).delete()
+            return True
+        except Exception as e:
+            print("error in deleting schedule ", e)
+            return False
+
+
+class Schedule(models.Model):
+    '''
+        Description for class Schedule
+
+        :ivar log_student_id: Primary key indexing for student_id
+        :ivar student_unity_id: unitiy id of student- unique
+        :ivar registered_course: related course
+        :ivar group: list of groups that the user belongs to
+        :ivar name: related course
+        :ivar email_id: users email id- unique
+        :ivar slack_user_id: slack user
+
+        '''
+
+    class Meta:
+        db_table = "log_schedule"
+        unique_together = (('slack_user_id', 'log_schedule_id'),)
+
+    log_schedule_id = models.AutoField(primary_key=True)
+    #student_unity_id = models.CharField(max_length=10, unique=True)
+    lecture_link = models.CharField(max_length=100, default=None)
+    tutor_link = models.CharField(max_length=100, default=None)
+    slack_user_id = models.CharField(max_length=100, null=True)
+    objects = ScheduleManager()
+
+
