@@ -11,7 +11,9 @@ from .request_handler import (get_student_details, get_all_students, get_student
                               create_group, create_student, update_student_details,
                               delete_student, get_all_groups, get_homeworks_for_team_id,
                               create_new_homework, delete_homework, delete_group,
-                              get_groups_for_a_slack_user)
+                              get_groups_for_a_slack_user, create_schedule, get_schedule_lecture_details,
+                              get_schedule_tutor_details, get_links_for_a_slack_user, get_all_schedules,
+                              delete_schedule, update_schedule_details)
 from .request_handler import delete_course
 
 
@@ -182,3 +184,61 @@ def dispatch_assignent_delete_request(request):
     """
 
     return delete_homework(request)
+
+
+# Schedule APIs
+
+
+def dispatch_schedule_create_request(request):
+    """REST Request dispatcher- Create schedule
+
+    :param request:
+    :return:
+    """
+    print("from dispatcher")
+    return create_schedule(request.data)
+
+
+def dispatch_schedule_get_request(request):
+    """REST Request dispatcher- get schedule
+
+    :param request:
+    :return:
+    """
+
+    # lecture_link = request.query_params.get("lecture_link", None)
+    # tutor_link = request.query_params.get("tutor_link", None)
+    # workspace_id = request.query_params.get("workspace_id", None)
+    # course_id = request.query_params.get("course_id", None)
+    student_id = request.query_params.get("slack_user_id", None)
+    schedule_type = request.query_params.get("type", None)
+    print(student_id, schedule_type)
+
+    # if (lecture_link) and (workspace_id or course_id):
+    #    return get_schedule_lecture_details(lecture_link, workspace_id, course_id)
+    # elif (tutor_link) and (workspace_id or course_id):
+    #    return get_schedule_tutor_details(tutor_link, workspace_id, course_id)
+    if not schedule_type:
+        return False
+    elif student_id:
+        return get_links_for_a_slack_user(student_id=student_id, schedule_type=schedule_type)
+    else:
+        return get_all_schedules()
+
+
+def dispatch_update_schedule_details(request):
+    """REST Request dispatcher- Update schedule
+
+    :param request:
+    :return:
+    """
+    return update_schedule_details(request.data)
+
+
+def dispatch_schedule_delete_request(request):
+    """REST Request dispatcher- delete schedule
+
+    :param request:
+    :return:
+    """
+    return delete_schedule(request.data)

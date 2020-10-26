@@ -25,6 +25,8 @@ def dispatch_commands(request):
     """
 
     command = request.data["command"]
+    print("printing command")
+    print(command)
     handler = assign_command_handler(command)
     response = handler(request.data)
     return response

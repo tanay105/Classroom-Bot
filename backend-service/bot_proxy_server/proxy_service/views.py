@@ -16,6 +16,6 @@ class SlackEventListener(generics.CreateAPIView):
 class SlackCommandListener(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
-
+        print(request)
         response_text = dispatch_commands(request)
         return Response(data=request.data)
