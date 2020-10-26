@@ -257,9 +257,9 @@ def parse_schedule_command_parameters_and_respond(request, parameters):
             email = parameters[1]
             team_id = request["team_id"]
 
-            #response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
         elif parameters[0] == "lecture":
-            #response = get_groups_for_user(request['user_id'])
+            response = get_groups_for_user(request['user_id'])
 
     else:
         response = "Invalid request format/structure."
