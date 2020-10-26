@@ -241,6 +241,7 @@ def is_valid_schedule_command_request(parameters):
     else:
         return False
 
+
 supported_deadline_command_operations = ('add', 'show')
 
 
@@ -261,6 +262,7 @@ def is_valid_deadline_command_request(parameters):
             return False
     else:
         return False
+
 
 def parse_schedule_command_parameters_and_respond(request, parameters):
     response = ""
@@ -301,7 +303,8 @@ def schedule_handler(request: dict) -> None:
     response_text = parse_schedule_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
 
-def parse_daedline_parameters_and_respond(request, request_parameters):
+
+def parse_daedline_parameters_and_respond(request, parameters):
     response = ""
 
     if is_valid_deadline_command_request(parameters):
