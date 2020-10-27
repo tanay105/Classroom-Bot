@@ -58,6 +58,11 @@ Explain the problem and include additional details to help a developer reproduce
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 * **If the problem wasn't triggered by a specific action,** describe what you were doing before the problem happened and share more information using the guidelines below.
 
+Provide more context by answering these questions:
+
+* Did the problem start happening recently or was this always a problem?
+* Can you reliably reproduce the issue? If not, provide details about how often the problem happens and under which conditions it normally happens.
+
 
 ### Suggesting Enhancements and new features
 
