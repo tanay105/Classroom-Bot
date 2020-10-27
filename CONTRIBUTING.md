@@ -115,3 +115,6 @@ Please include the following while creating a Pull Request:
 These Contributing guidelines are adapted from the [Atom's][homepage] contributing guidelines.
 
 [homepage]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
+
+
+For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu
