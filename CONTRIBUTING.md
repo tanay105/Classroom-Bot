@@ -117,4 +117,4 @@ These Contributing guidelines are adapted from the [Atom's][homepage] contributi
 [homepage]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
 
 
-For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu
+For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu / smavinh@ncsu.edu
