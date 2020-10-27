@@ -14,7 +14,7 @@ The questions here are to be answered by the user after he has completed the un-
 
 * Did you miss any notification from the bot ?
 
-* Did the bot crashing while you were using it ? If yes, was there any particular action that you did that might have acted as a bug trigger ? 
+* Did the bot crash while you were using it ? If yes, was there any particular action that you did that might have acted as a trigger ? 
 
 * Please fill in the following details : ( if you dont know the answer just type N/A)
 >* The operating system of your device : 
