@@ -12,6 +12,7 @@
 <img src="https://img.shields.io/github/repo-size/tanay105/Classroom-Bot" alt="Light Weight">
 <img src="https://img.shields.io/github/issues/Ayushi61/Classroom-Bot/Haktoberfest" alt="Win a Tshirt">
 <img src="https://codecov.io/gh/tanay105/Classroom-Bot/branch/master/graph/badge.svg?token=GDIGVPXI97"/>
+<img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/tanay105/Classroom-Bot?label=lines%20of%20code&style=flat-square">
 
 </center>
 
