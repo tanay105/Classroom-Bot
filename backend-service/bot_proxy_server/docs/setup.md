@@ -24,6 +24,7 @@ Let' start:
         export BOT_SERVER_COURSE_URL=http://localhost:8001/api/course/
         export BOT_SERVER_ASSIGNMENT_URL=http://localhost:8001/api/assignment/
         export BOT_SERVER_STUDENT_URL=http://localhost:8001/api/student/
+        export BOT_SERVER_SCHEDULE_URL=http://localhost:8001/api/schedule/
 
     Quick explanation of each of the fields:
     

@@ -76,6 +76,24 @@ app into our system through the admin UI to get things working.
                
             b. Once registered you can type in things like "/my group" and the bot will intelligently list your
                 assignment groups and their group member details.
+         
+    5. Fourth Command (schedule) parameters:
+    
+        a. Command: /schedule
+        
+        b. Request URL: Same as above
+        
+        c. Short Description: Whatever you feel like. (This command basically gives a track of the lecture and tutor links per user)
+        
+        d. Usage hint: lecture_link <link> | tutor_link <link> | get_lecture_link | get_tutor_link
+        
+            a. /schedule lecture_link <link> : This would save the lecture link for the user with the bot.
+               
+            b. /schedule tutor_link <link> : This would save the tutor link for the user with the bot.
+
+            c. /scheudle get_lecture_link : This would fetch the lecture link from the database for the user.
+
+            d. /schedule get_tutor_link : THis would fetch the tutor link from the database for the user.
                 
 6. We're close to setting up our slack workspace to integrate with classroom bot. Hang in tight. So for the next step we will have to give permission to our slack app to have access to things like listening on slack so that the request to classroom-bot can be forwarded to our proxy-server.
 
