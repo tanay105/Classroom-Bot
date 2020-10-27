@@ -43,6 +43,28 @@ class StudentSerializer(serializers.Serializer):
         return data
 
 
+class ScheduleSerializer(serializers.Serializer):
+    """
+    Schedule serializer
+    """
+    workspace_id = serializers.CharField(required=False)
+    lecture_link = serializers.CharField(required=False)
+    tutor_link = serializers.CharField(required=False)
+    slack_user_id = serializers.CharField(required=False)
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    def validate(self, data):
+        if 'workspace_id' not in data and 'course_id' not in data:
+            raise serializers.ValidationError("Either course_id or workspace_id should be present in the request.")
+
+        return data
+
+
 class ParticipantsSerializer(serializers.Serializer):
     """
     Participant serializer

@@ -5,11 +5,11 @@
 
 <center>
 
-<a href="https://travis-ci.org/github/Ayushi61/Classroom-Bot"><img src="https://travis-ci.org/Ayushi61/Classroom-Bot.svg?branch=master" alt="Build Status"></a>
+<a href="https://travis-ci.com/tanay105/Classroom-Bot"><img src="https://travis-ci.com/tanay105/Classroom-Bot.svg?branch=master" alt="Build Status"></a>
 <a href="https://zenodo.org/badge/latestdoi/288084201"><img src="https://zenodo.org/badge/288084201.svg" alt="DOI"></a>
-<img src="https://img.shields.io/github/issues-raw/Ayushi61/Classroom-Bot" alt="Issues">
-<img src="https://img.shields.io/github/issues-closed-raw/Ayushi61/Classroom-Bot?style=plastic" alt="Closed Issues">
-<img src="https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot" alt="Light Weight">
+<img src="https://img.shields.io/github/issues-raw/tanay105/Classroom-Bot" alt="Issues">
+<img src="https://img.shields.io/github/issues-closed-raw/tanay105/Classroom-Bot?style=plastic" alt="Closed Issues">
+<img src="https://img.shields.io/github/repo-size/tanay105/Classroom-Bot" alt="Light Weight">
 <img src="https://img.shields.io/github/issues/Ayushi61/Classroom-Bot/Haktoberfest" alt="Win a Tshirt">
 <img src="https://codecov.io/gh/tanay105/Classroom-Bot/branch/master/graph/badge.svg?token=GDIGVPXI97"/>
 
