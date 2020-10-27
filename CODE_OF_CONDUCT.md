@@ -20,6 +20,8 @@ include:
 * Focusing on what is best for the community
 * Showing empathy towards other community members
 * Being vocal about issues if any.
+* Be patient. Remember that people have varying communication styles 
+and that not everyone is using their native language. (Meaning and tone can be lost in translation.)
 
 Examples of unacceptable behavior by participants include:
 
