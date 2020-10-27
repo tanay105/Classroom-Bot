@@ -1,33 +1,35 @@
-#performance test plan
+#End User Test Plan
 
-These tests described below should be done on multiple devices , with different hardware configurations.    
+These tests described below should be done with multiple users.    
 
-### Memory test plan
+### Moderated user testing
 
-* Initially, the testing environment consists of slack without any classroom bot installed.
-* The user uses slack for a period of 24 hours and a background daemon keeps track of the memory used by slack in that time frame. 
-* The background daemon saves the exact amount of memory that slack is using every minute. So it takes 60 readings in a minute and 720 readings in a day.
-* After this , the user goes ahead and installs the classroom bot and uses slack for 24 hours again. 
-* The background daemon again takes the reading of memory being used by slack.
-* we compare the memory utilised values taken before and after using the bot to figure out if the bot might be hogging more memory than expected.           
+* The user is given information about the bot and a member of the dev team will help user set up the slack bot.
+* He will also answer any technical question related to the bot, if the user asks it.
+* The user will use the bot and the dev team member will observe him
+* No diagnostic data ( such as memory reading and other performance metrics ) will be collected during this test
 
-Goal of this test is to analyze the following : 
-* is there a memory leak when classroom bot is active ?
-* how much memory does the classrooom bot take when the user is not interacting with the bot ? 
-* how much memory does the classrooom bot take when the user is interacting with the bot ? 
+The goals of this test are as to find these outcome: 
+* How easily can the user start using this bot if he has some assistance.
+* How much time ( in minutes ) does it take for the user to set up the bot. 
+* How much time did the user use the bot ? Did the user uninstall the bot ? 
+* did the bot crash while the user was using it ? 
 
-### CPU utilisation test plan
 
-* Initially, the testing environment consists of slack without any classroom bot installed.
-* The user uses slack for a period of 24 hours and a background daemon keeps track of the CPU utilisation by slack in that time frame. 
-* The background daemon saves the exact metric of  CPU utilisation that slack is using every minute. So it takes 60 readings in a minute and 720 readings in a day.
-* After this , the user goes ahead and installs the classroom bot and uses slack for 24 hours again. 
-* The background daemon again takes the reading of CPU utilisation being used by slack.
+### Unmoderated user testing
 
-Goal of this test is to analyze the following : 
-* Is there a CPU utilisation spike when classroom bot is active? 
-* how much CPU cycle does the bot take when the user is not interacting with the bot ? 
-* how much CPU cycle does the bot take when the user is interacting with the bot ?
-* does the bot work with older CPU's which have less cores ? 
-* does the bot work with CPU cores that have hyper threading enabled ?
-* we compare the CPU utilisations values taken before and after using the bot to figure out if the bot might be hogging more CPU cycles than expected.           
+* The user is given information about the bot and is asked to test it out. The user has no help from any member of the development team.
+* The user will install the bot on his own and will use it without any guidance from anyone.
+* After the user is done with the testing , the user will fill out the survey form.
+* No diagnostic data ( such as memory reading and other performance metrics ) will be collected during this test
+
+
+The goals of this test are as to find these outcome: 
+* How easily can the user start using this bot if he has no assistance.
+* How much time ( in minutes ) does it take for the user to set up the bot. 
+* How much time did the user use the bot ? Did the user uninstall the bot ? 
+* did the bot crash while the user was using it ? 
+* Is the user likely to recommend it other users ? 
+
+
+##### In the above tests the diagnostic data is not collected. we can have another set of tests described as above in which we can collect diagnostic data when moderated and un-moderated testing is going on. The challenge here would be to install diagnostic software ( which will collect metric such as memory usage and other metrics defined in performance_test_plan.md) on the machine owned by user.  
