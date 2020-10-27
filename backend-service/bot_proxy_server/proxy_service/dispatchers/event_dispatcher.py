@@ -8,7 +8,6 @@ __all__ = ('dispatch_events',)
 
 
 def dispatch_events(request) -> dict:
-
     """
     This methods take the incoming http request and dispatches it to the write handler.
     The handler will return the response, if a handler is not found a default response
@@ -32,7 +31,6 @@ def dispatch_events(request) -> dict:
 
 
 def assign_event_handler(event_type):
-
     """
     This function takes in event type as input and based on the type of event received,
     it returns correct handler.

@@ -33,14 +33,13 @@ def send_message(team_id, channel, message, user_id):
         while retry_count <= 5:
 
             try:
-                slack_client.chat_postEphemeral(channel=channel, text=message, user=user_id)
+                slack_client.chat_postEphemeral(
+                    channel=channel, text=message, user=user_id)
                 break
             except SlackApiError as e:
                 traceback.print_exc()
-                slack_client = \
-                    SlackWebClientCacheSingletonManager.get_cache().get_or_add_missing_team_client(
-                        team_id=team_id,
-                        team_token=bot_token)
+                slack_client = SlackWebClientCacheSingletonManager.get_cache(
+                ).get_or_add_missing_team_client(team_id=team_id, team_token=bot_token)
                 retry_count += 1
     else:
         print("Most probably slack app not configured on system or error creating client.")

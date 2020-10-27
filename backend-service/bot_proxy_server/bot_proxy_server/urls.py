@@ -19,7 +19,8 @@ from bot_proxy_server.settings import api_version
 from django.conf.urls import url, include
 
 
-urlpatterns = [
-    path(f'{api_version}/admin/', admin.site.urls),
-    url('' + f'{api_version}/service/', include('proxy_service.urls'), name='proxy_service')
-]
+urlpatterns = [path(f'{api_version}/admin/',
+                    admin.site.urls),
+               url('' + f'{api_version}/service/',
+                   include('proxy_service.urls'),
+                   name='proxy_service')]

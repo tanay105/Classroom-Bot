@@ -8,13 +8,15 @@ Date: 2020-09-04
 
 from ..slack_client import send_message
 from proxy_service.models import CommandRequest
-from proxy_service.bot_server_http_calls.assignment import (get_all_assignments_for_team,
-                                                            create_new_assignment)
-from proxy_service.bot_server_http_calls.student import (register_user_email_id, get_groups_for_user)
-from proxy_service.bot_server_http_calls.schedule import (save_lecture_link_user_email_id,
-                                                          save_tutor_link_user_email_id,
-                                                          get_lecture_link_for_user,
-                                                          get_tutor_link_for_user)
+from proxy_service.bot_server_http_calls.assignment import (
+    get_all_assignments_for_team, create_new_assignment)
+from proxy_service.bot_server_http_calls.student import (
+    register_user_email_id, get_groups_for_user)
+from proxy_service.bot_server_http_calls.schedule import (
+    save_lecture_link_user_email_id,
+    save_tutor_link_user_email_id,
+    get_lecture_link_for_user,
+    get_tutor_link_for_user)
 
 supported_group_command_parameters = ('help', 'list')
 supported_assignment_command_operations = ('get', 'create')
@@ -32,7 +34,11 @@ def is_valid_group_command_request(parameters):
 
 def send_command_response(request, response):
     team_id = request["team_id"]
-    send_message(team_id=team_id, channel=request["channel_id"], message=response, user_id=request["user_id"])
+    send_message(
+        team_id=team_id,
+        channel=request["channel_id"],
+        message=response,
+        user_id=request["user_id"])
 
 
 def parse_group_command_parameters_and_respond(parameters):
@@ -42,7 +48,8 @@ def parse_group_command_parameters_and_respond(parameters):
 
         parameters = parameters.split(" ")
 
-        request_id = CommandRequest.objects.create_new_incoming_record(command="group", command_parameter=parameters)
+        request_id = CommandRequest.objects.create_new_incoming_record(
+            command="group", command_parameter=parameters)
 
         if request_id != -1:
 
@@ -51,7 +58,9 @@ def parse_group_command_parameters_and_respond(parameters):
                            "Parameter usage:\n" \
                            "1. /group help\n" \
                            "2. /group list group_name or group_number\n"
-            CommandRequest.objects.update_request(request_id=request_id, request_parameters={'response': response})
+            CommandRequest.objects.update_request(
+                request_id=request_id, request_parameters={
+                    'response': response})
 
     else:
         request_id = CommandRequest.objects.create_new_incoming_record(
@@ -64,11 +73,9 @@ def parse_group_command_parameters_and_respond(parameters):
                        "Parameter usage:\n" \
                        "1. /group help\n" \
                        "2. /group list group_name or group_number\n"
-            CommandRequest.objects.update_request(request_id=request_id,
-                                                  request_parameters={
-                                                      "response": response,
-                                                      "request_status": "invalid"
-                                                  })
+            CommandRequest.objects.update_request(
+                request_id=request_id, request_parameters={
+                    "response": response, "request_status": "invalid"})
 
     return response
 
@@ -93,7 +100,8 @@ def is_valid_assignment_command_request(parameters):
         if len(parameters) == 1 and parameters[0] == 'get':
             return True
         elif parameters[0] == 'create' and len(parameters) == 7:
-            supported_create_parameters = ['assignment_name', 'due_by', 'homework_url']
+            supported_create_parameters = [
+                'assignment_name', 'due_by', 'homework_url']
             parameter_fields = [parameters[1], parameters[3], parameters[5]]
             for parameter_field in parameter_fields:
                 if parameter_field not in supported_create_parameters:
@@ -107,9 +115,10 @@ def format_assignment_get_response(response_json):
     response = "Assignment Name    |  Due Date            | Assignment URL\n"
 
     for assignment in response_json["data"]:
-        response += "{} | {} | {}\n".format(assignment["fields"]["assignment_name"],
-                                            assignment["fields"]["due_by"],
-                                            assignment["fields"]["homework_url"])
+        response += "{} | {} | {}\n".format(
+            assignment["fields"]["assignment_name"],
+            assignment["fields"]["due_by"],
+            assignment["fields"]["homework_url"])
 
     return response
 
@@ -148,7 +157,8 @@ def assignment_handler(request: dict) -> None:
     :return:
     """
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_assignment_command_parameters_and_respond(request, request_parameters)
+    response_text = parse_assignment_command_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
 
 
@@ -189,7 +199,8 @@ def parse_my_command_parameters_and_respond(request, parameters):
             email = parameters[1]
             team_id = request["team_id"]
 
-            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+            response = register_user_email_id(
+                email_id=email, team_id=team_id, slack_user_id=request["user_id"])
         elif parameters[0] == "group":
             response = get_groups_for_user(request['user_id'])
 
@@ -206,14 +217,16 @@ def my_handler(request: dict) -> None:
     """
 
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_my_command_parameters_and_respond(request, request_parameters)
+    response_text = parse_my_command_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
 
 
 # code for handling schedule command from slack to class room environment
 
 
-supported_schedule_command_operations = ('tutor', 'lecture', 'get_lecture_link', 'get_tutor_link')
+supported_schedule_command_operations = (
+    'tutor', 'lecture', 'get_lecture_link', 'get_tutor_link')
 
 
 def is_valid_schedule_command_request(parameters):
@@ -283,13 +296,14 @@ def parse_schedule_command_parameters_and_respond(request, parameters):
             link = parameters[1]
             team_id = request["team_id"]
 
-            response = save_tutor_link_user_email_id(tutor_link=link, team_id=team_id, slack_user_id=request["user_id"])
+            response = save_tutor_link_user_email_id(
+                tutor_link=link, team_id=team_id, slack_user_id=request["user_id"])
         elif parameters[0] == "lecture":
             link = parameters[1]
             team_id = request["team_id"]
 
-            response = save_lecture_link_user_email_id(lecture_link=link, team_id=team_id,
-                                                       slack_user_id=request["user_id"])
+            response = save_lecture_link_user_email_id(
+                lecture_link=link, team_id=team_id, slack_user_id=request["user_id"])
         elif parameters[0] == "get_tutor_link":
             response = get_tutor_link_for_user(request['user_id'])
         elif parameters[0] == "get_lecture_link":
@@ -308,7 +322,8 @@ def schedule_handler(request: dict) -> None:
     """
 
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_schedule_command_parameters_and_respond(request, request_parameters)
+    response_text = parse_schedule_command_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
 
 
@@ -365,9 +380,8 @@ def parse_daedline_parameters_and_respond(request, parameters):
             date = parameters[2]
             team_id = parameters["team_id"]
 
-            response = add_deadline_user_email_id(name=name, date=date,
-                                                  team_id=team_id,
-                                                  slack_user_id=request["user_id"])
+            response = add_deadline_user_email_id(
+                name=name, date=date, team_id=team_id, slack_user_id=request["user_id"])
 
         elif parameters[0] == "show":
             response = show_deadlines_for_user(request["user_id"])
@@ -378,14 +392,14 @@ def parse_daedline_parameters_and_respond(request, parameters):
 
 
 def bookmarks_handler(request: dict) -> None:
-
     """
     This function handles a request from the slack for the assignment command.
     :param request:
     :return:
     """
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_bookmarks_command_parameters_and_respond(request, request_parameters)
+    response_text = parse_bookmarks_command_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
     return response
 
@@ -399,7 +413,8 @@ def deadline_handler(request: dict) -> None:
     """
 
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_daedline_parameters_and_respond(request, request_parameters)
+    response_text = parse_daedline_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
 
 
@@ -436,7 +451,8 @@ def parse_grade_command_parameters_and_respond(request, parameters):
     if is_valid_grade_command_request(parameters):
         parameters = parameters.split(" ")
         if parameters[0] == "get":
-            response = get_all_grades_for_student(student_id=request["student_id"])
+            response = get_all_grades_for_student(
+                student_id=request["student_id"])
             response = format_grade_get_response(response)
         elif parameters[0] == "create":
             pass
@@ -447,12 +463,12 @@ def parse_grade_command_parameters_and_respond(request, parameters):
 
 
 def grade_handler(request: dict) -> None:
-
     """
     This function handles a request from the slack for the assignment command.
     :param request:
     :return:
     """
     request_parameters = request["text"].replace("\xa0", " ")
-    response_text = parse_grade_command_parameters_and_respond(request, request_parameters)
+    response_text = parse_grade_command_parameters_and_respond(
+        request, request_parameters)
     send_command_response(request, response_text)
