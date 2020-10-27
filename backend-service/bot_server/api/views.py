@@ -8,7 +8,10 @@ from .request_dispatcher import (dispatch_student_create_request, dispatch_stude
                                  dispatch_assignment_get_request, dispatch_assignent_post_request)
 from .request_dispatcher import (dispatch_course_delete_request, dispatch_group_delete_request,
                                  dispatch_assignent_delete_request)
-from .serializer import CourseSerializer, GroupSerializer, StudentSerializer, AssignmentSerializer
+from .request_dispatcher import (dispatch_schedule_delete_request, dispatch_update_schedule_details,
+                                 dispatch_schedule_get_request, dispatch_schedule_create_request)
+from .serializer import (CourseSerializer, GroupSerializer, StudentSerializer, AssignmentSerializer,
+                         ScheduleSerializer)
 
 error_response = {
     "data": [],
@@ -65,6 +68,39 @@ class Student(generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIVi
 
     def delete(self, request, *args, **kwargs):
         response = dispatch_student_delete_request(request)
+        status_code = None
+        if response:
+            status_code = 200
+        else:
+            status_code = 500
+        return Response(data=response, status=status_code)
+
+
+class Schedule(generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
+    """
+    Schedule view
+    """
+    serializer_class = ScheduleSerializer
+
+    def get(self, request, *args, **kwargs):
+        response = dispatch_schedule_get_request(request)
+        return Response(data=response)
+
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = ScheduleSerializer(data=request.data)
+        if serializer.is_valid():
+            response = dispatch_schedule_create_request(request)
+            return Response(data=response['data'], status=response.get('status_code', 200))
+        else:
+            return Response(data=serializer.errors, status=400)
+
+    def patch(self, request, *args, **kwargs):
+        response = dispatch_update_schedule_details(request)
+        return Response(data=response)
+
+    def delete(self, request, *args, **kwargs):
+        response = dispatch_schedule_delete_request(request)
         status_code = None
         if response:
             status_code = 200

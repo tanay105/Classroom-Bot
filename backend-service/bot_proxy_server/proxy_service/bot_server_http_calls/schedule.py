@@ -7,10 +7,12 @@ def save_tutor_link_user_email_id(team_id, tutor_link, slack_user_id):
     schedule_url = os.getenv("BOT_SERVER_SCHEDULE_URL", None)
 
     if schedule_url:
-        req = requests.patch(schedule_url,
-                             data={'tutor_link': tutor_link,
-                                   'workspace_id': team_id,
-                                   'slack_user_id': slack_user_id})
+        print("Sending")
+        print(schedule_url, tutor_link, slack_user_id, team_id)
+        req = requests.post(schedule_url,
+                            data={'tutor_link': tutor_link,
+                                  'workspace_id': team_id,
+                                  'slack_user_id': slack_user_id})
 
         res = req.text
         if res == 'true':
@@ -27,10 +29,12 @@ def save_lecture_link_user_email_id(team_id, lecture_link, slack_user_id):
     schedule_url = os.getenv("BOT_SERVER_SCHEDULE_URL", None)
 
     if schedule_url:
-        req = requests.patch(schedule_url,
-                             data={'lecture_link': lecture_link,
-                                   'workspace_id': team_id,
-                                   'slack_user_id': slack_user_id})
+        print("Sending")
+        print(schedule_url, lecture_link, slack_user_id, team_id)
+        req = requests.post(schedule_url,
+                            data={'lecture_link': lecture_link,
+                                  'workspace_id': team_id,
+                                  'slack_user_id': slack_user_id})
 
         res = req.text
         if res == 'true':
@@ -48,7 +52,8 @@ def get_tutor_link_for_user(slack_id):
 
     if schedule_url:
         req = requests.get(schedule_url, params={
-            "student_id": slack_id
+            "slack_user_id": slack_id,
+            "type": "tutor"
         })
 
         res = req.json()
@@ -61,7 +66,8 @@ def get_lecture_link_for_user(slack_id):
 
     if schedule_url:
         req = requests.get(schedule_url, params={
-            "student_id": slack_id
+            "slack_user_id": slack_id,
+            "type": "lecture"
         })
 
         res = req.json()
