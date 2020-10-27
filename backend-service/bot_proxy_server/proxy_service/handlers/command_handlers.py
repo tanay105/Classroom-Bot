@@ -18,6 +18,7 @@ from proxy_service.bot_server_http_calls.schedule import (save_lecture_link_user
 
 supported_group_command_parameters = ('help', 'list')
 supported_assignment_command_operations = ('get', 'create')
+supported_bookmarks_command_operations = ('get', 'create')
 
 
 def is_valid_group_command_request(parameters):
@@ -310,6 +311,47 @@ def schedule_handler(request: dict) -> None:
     send_command_response(request, response_text)
 
 
+def is_valid_bookmarks_command_request(parameters):
+
+    parameters = parameters.split(" ")
+
+    if parameters[0] in supported_bookmarks_command_operations:
+
+        if len(parameters) == 1 and parameters[0] == 'get':
+            return True
+        elif parameters[0] == 'create':
+            # create params
+            return True
+    else:
+        return False
+
+
+def format_bookmarks_get_response(response_json):
+    response = "Bookmark ID   | Bookmark Name     | URL\n"
+    for grade in response_json["data"]:
+        response += "{} | {} | {}\n".format(bookmarks["fields"]["bookmarkID"],
+                                            grade["fields"]["bookmarkName"],
+                                            grade["fields"]["URL"])
+    return response
+
+
+def parse_bookmarks_command_parameters_and_respond(request, parameters):
+
+    response = ""
+
+    if is_valid_grade_command_request(parameters):
+        parameters = parameters.split(" ")
+
+        if parameters[0] == "get":
+            response = get_all_bookmarks(course_id=request["course_id"])
+            response = format_bookmarks_get_response(response)
+        elif parameters[0] == "create":
+            pass
+    else:
+        response = "Invalid command parameters."
+    return response
+
+
 def parse_daedline_parameters_and_respond(request, parameters):
     response = ""
 
@@ -331,7 +373,19 @@ def parse_daedline_parameters_and_respond(request, parameters):
 
         else:
             response = "Invalid request format or structure"
+    return response
 
+
+def bookmarks_handler(request: dict) -> None:
+
+    """
+    This function handles a request from the slack for the assignment command.
+    :param request:
+    :return:
+    """
+    request_parameters = request["text"].replace("\xa0", " ")
+    response_text = parse_bookmarks_command_parameters_and_respond(request, request_parameters)
+    send_command_response(request, response_text)
     return response
 
 

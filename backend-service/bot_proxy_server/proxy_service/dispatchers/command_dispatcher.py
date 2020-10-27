@@ -50,7 +50,10 @@ def assign_command_handler(command):
         return my_handler
 
     elif command == "/schedule":
-        return schedule_handler
+        return schedule_handle
+
+    elif command == "/bookmarks":
+        return bookmarks_handler
 
     elif command == "/deadline":
         return deadline_handler
