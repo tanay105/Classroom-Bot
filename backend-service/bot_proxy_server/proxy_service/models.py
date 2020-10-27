@@ -1,11 +1,8 @@
 from django.db import models
-import json
-from django.core import serializers
 
 
 # Create your managers here.
 class CommandRequestManager(models.Manager):
-
     """
     Manager class for log_command_request table.
     Here is quick reference to work with CRUD operations with Django:
@@ -21,7 +18,8 @@ class CommandRequestManager(models.Manager):
         This function is called for the first time when the request in received from slack.
         :param command: command from slack
         :param command_parameter: space separated command parameters
-        :param is_valid_request: by default set to true, if otherwise passed in the function call
+        :param is_valid_request: by default set to true, if otherwise
+        passed in the function call
         :return: returns the request id if everything goes right otherwise returns -1
         """
 
@@ -51,7 +49,6 @@ class CommandRequestManager(models.Manager):
 
 # Create your models here.
 class CommandRequest(models.Model):
-
     class Meta:
         db_table = "log_command_request"
 
