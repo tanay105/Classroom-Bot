@@ -1,7 +1,7 @@
 from django.db import models
 import json
 from django.core import serializers
-from api.models import Course, Dept, Student, Group
+from api.models import Group
 
 
 # Create your managers here.

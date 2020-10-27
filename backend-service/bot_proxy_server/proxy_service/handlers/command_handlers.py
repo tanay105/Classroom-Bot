@@ -17,6 +17,9 @@ from proxy_service.bot_server_http_calls.schedule import (
     save_tutor_link_user_email_id,
     get_lecture_link_for_user,
     get_tutor_link_for_user)
+from proxy_service.bot_server_http_calls.deadline import (
+    add_deadline_user_email_id,
+    show_deadlines_for_user)
 
 supported_group_command_parameters = ('help', 'list')
 supported_assignment_command_operations = ('get', 'create')
