@@ -11,15 +11,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='BotServerEndpoint',
-            fields=[
-                ('log_bot_server_endpoint_id', models.AutoField(primary_key=True, serialize=False)),
-                ('resource_name', models.CharField(max_length=1000)),
-                ('endpoint_url', models.CharField(max_length=1000)),
-                ('endpoint_name', models.CharField(max_length=1000)),
-            ],
-            options={
-                'db_table': 'log_bot_server_endpoint',
-            },
-        ),
-    ]
+            name='BotServerEndpoint', fields=[
+                ('log_bot_server_endpoint_id', models.AutoField(
+                    primary_key=True, serialize=False)), ('resource_name', models.CharField(
+                        max_length=1000)), ('endpoint_url', models.CharField(
+                            max_length=1000)), ('endpoint_name', models.CharField(
+                                max_length=1000)), ], options={
+                'db_table': 'log_bot_server_endpoint', }, ), ]

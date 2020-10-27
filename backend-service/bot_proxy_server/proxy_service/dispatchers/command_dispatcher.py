@@ -12,7 +12,6 @@ supported_commands = ['/group']
 
 
 def dispatch_commands(request):
-
     """
     This functions takes the incoming http request from the slack and
     based on the command received and returns the respective response
@@ -33,7 +32,6 @@ def dispatch_commands(request):
 
 
 def assign_command_handler(command):
-
     """
     This function takes command as an input and return appropriate handler function.
     :param command: the command received from slack
