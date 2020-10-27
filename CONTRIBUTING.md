@@ -31,6 +31,7 @@ The Obvious Fixes comprise of:
 * Bug fixes that change default return values or error codes stored in constants
 * Adding logging messages or debugging output
 * Updating documentation
+* Updating installation scripts
 
 One can go ahead and follow the [3-step process](#required-3-steps-for-contributing)
 
