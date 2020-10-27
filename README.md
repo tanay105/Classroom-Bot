@@ -6,6 +6,7 @@
 <center>
 
 <a href="https://travis-ci.com/tanay105/Classroom-Bot"><img src="https://travis-ci.com/tanay105/Classroom-Bot.svg?branch=master" alt="Build Status"></a>
+<img alt="GitHub" src="https://img.shields.io/github/license/tanay105/Classroom-Bot">
 <a href="https://zenodo.org/badge/latestdoi/288084201"><img src="https://zenodo.org/badge/288084201.svg" alt="DOI"></a>
 <img src="https://img.shields.io/github/issues-raw/tanay105/Classroom-Bot" alt="Issues">
 <img src="https://img.shields.io/github/issues-closed-raw/tanay105/Classroom-Bot?style=plastic" alt="Closed Issues">
@@ -13,6 +14,7 @@
 <img src="https://img.shields.io/github/issues/Ayushi61/Classroom-Bot/Haktoberfest" alt="Win a Tshirt">
 <img src="https://codecov.io/gh/tanay105/Classroom-Bot/branch/master/graph/badge.svg?token=GDIGVPXI97"/>
 <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/tanay105/Classroom-Bot?label=lines%20of%20code&style=flat-square">
+<img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/NaiekJTGSXg?style=social">
 
 </center>
 
