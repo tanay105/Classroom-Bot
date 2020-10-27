@@ -386,6 +386,7 @@ def bookmarks_handler(request: dict) -> None:
     request_parameters = request["text"].replace("\xa0", " ")
     response_text = parse_bookmarks_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)
+    return response
 
 
 def deadline_handler(request: dict) -> None:
