@@ -11,9 +11,8 @@ from .request_handler import (get_student_details, get_all_students, get_student
                               create_group, create_student, update_student_details,
                               delete_student, get_all_groups, get_homeworks_for_team_id,
                               create_new_homework, delete_homework, delete_group,
-                              get_groups_for_a_slack_user, create_schedule, get_schedule_lecture_details,
-                              get_schedule_tutor_details, get_links_for_a_slack_user, get_all_schedules,
-                              delete_schedule, update_schedule_details)
+                              get_groups_for_a_slack_user, create_schedule, get_links_for_a_slack_user,
+                              get_all_schedules, delete_schedule, update_schedule_details)
 from .request_handler import delete_course
 
 

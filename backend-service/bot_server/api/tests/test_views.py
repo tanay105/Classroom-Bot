@@ -1,8 +1,6 @@
 import copy
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.core import serializers
-import api.views
 from api.models import Course, Student, Group, Assignment
 # Create your tests here.
 
