@@ -77,7 +77,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 * **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
 * **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
 * **Describe the current behavior** and **explain which behavior you expected to see instead** and why.
-
+* **Explain why this enhancement would be useful.**
 ### Your First Code Contribution
 
 #### Required 3 Steps for contributing:
@@ -122,5 +122,4 @@ These Contributing guidelines are adapted from the [Atom's][homepage] contributi
 
 [homepage]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
 
-
-For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu
+For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu / smavinh@ncsu.edu
