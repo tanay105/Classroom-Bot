@@ -30,9 +30,4 @@ Goal of this test is to analyze the following :
 * how much CPU cycle does the bot take when the user is interacting with the bot ?
 * does the bot work with older CPU's which have less cores ? 
 * does the bot work with CPU cores that have hyper threading enabled ?
-* we compare the CPU utilisations values taken before and after using the bot to figure out if the bot might be hogging more CPU cycles than expected.   
-
-### mobile device test plan
-
-* We do the above mentioned performance testing , but this time we do the same on smartphones and tablets
-* Some OS/devices where we can test are : iPhone ( from 6s till iphone 12 ), Android ( from Android 8 till android 11 )        
+* we compare the CPU utilisations values taken before and after using the bot to figure out if the bot might be hogging more CPU cycles than expected.           
