@@ -57,3 +57,6 @@ def assign_command_handler(command):
 
     elif command == "/deadline":
         return deadline_handler
+
+    elif command == "/grade":
+        return grade_handler
