@@ -15,6 +15,7 @@
 <img src="https://codecov.io/gh/tanay105/Classroom-Bot/branch/master/graph/badge.svg?token=GDIGVPXI97"/>
 <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/tanay105/Classroom-Bot?label=lines%20of%20code&style=flat-square">
 <img alt="YouTube Video Views" src="https://img.shields.io/youtube/views/NaiekJTGSXg?style=social">
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 </center>
 
