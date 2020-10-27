@@ -56,6 +56,12 @@ Explain the problem and include additional details to help a developer reproduce
 * **Explain which behavior you expected to see instead and why.**
 * **If the problem is related to performance or memory**, include details of the errors encountered with your report.
 * **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
+* **If the problem wasn't triggered by a specific action,** describe what you were doing before the problem happened and share more information using the guidelines below.
+
+Provide more context by answering these questions:
+
+* Did the problem start happening recently or was this always a problem?
+* Can you reliably reproduce the issue? If not, provide details about how often the problem happens and under which conditions it normally happens.
 
 
 ### Suggesting Enhancements and new features
@@ -115,6 +121,5 @@ Please include the following while creating a Pull Request:
 These Contributing guidelines are adapted from the [Atom's][homepage] contributing guidelines.
 
 [homepage]: https://github.com/atom/atom/blob/master/CONTRIBUTING.md
-
 
 For any question / queries / clarification on this please reach out to : agautam6@ncsu.edu / smavinh@ncsu.edu
