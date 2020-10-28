@@ -18,6 +18,13 @@
 
 </center>
 
+### Test plan for next phase:
+
+1. [End User Test Plan](https://github.com/tanay105/Classroom-Bot/blob/master/docs/test_plan/end_user_test_plan.md)
+2. [Performance Test Plan](https://github.com/tanay105/Classroom-Bot/blob/master/docs/test_plan/performance_test_plan.md)
+3. [User Testing Survey](https://github.com/tanay105/Classroom-Bot/blob/master/docs/test_plan/survey/user_testing_survey.md)
+4. [Moderated User Testing Survey](https://github.com/tanay105/Classroom-Bot/blob/master/docs/test_plan/survey/moderated_user_testing_survey.md)
+
 ### Why a developer cares
 
 1. Quantify the time taken by a user to scroll through all the resources vs using the Classroom-Bot. Contact the owner for more information on the prototype of the website that can make your as well as participants' task easy to do lab experiments.
